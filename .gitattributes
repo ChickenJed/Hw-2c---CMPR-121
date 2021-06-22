@@ -1,2 +1,114 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+// Attached: HW_2a, 2b, 2c, 2d
+// ======================================================
+// Program: HW_2c
+// ======================================================
+// Programmer: Christian Verry
+// Class: CS CMPR 121
+// ======================================================
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+	char studentGrades[5][3];
+	ifstream inFile;
+	inFile.open("grade.txt");
+
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+
+	if (!inFile)
+	{
+		cout << "File not found.\n";
+	}
+	else
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				inFile >> studentGrades[i][j];
+			}
+		}
+	}
+
+	cout << "All Grades\n";
+	cout << "Student" << setw(10) << "English" << setw(11) << "History" << setw(8) << "Math\n";
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "#" << i + 1;
+		for (int j = 0; j < 3; j++)
+		{
+			cout << setw(10) << studentGrades[i][j];
+		}
+		cout << '\n';
+	}
+
+	double studentGPA[5];
+	double avgGPA = 0.0;
+	double subjectGPA = 0.0;
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			switch (studentGrades[i][j])
+			{
+			case 'A': studentGrades[i][j] = 4.00;
+				break;
+			case 'B': studentGrades[i][j] = 3.00;
+				break;
+			case 'C': studentGrades[i][j] = 2.00;
+				break;
+			case 'D': studentGrades[i][j] = 1.00;
+				break;
+			case 'F': studentGrades[i][j] = 0.00;
+				break;
+			}
+		}
+	}
+
+	
+
+	cout << "\n\nStudent GPAs\n";
+	cout << "Student\n";
+
+	// First Student 
+	avgGPA = ((float(studentGrades[0][0]) + float(studentGrades[0][1]) + float(studentGrades[0][2])) / (3.0));
+	cout << "#1\t\t" << avgGPA << endl;
+
+	// Second Student 
+	avgGPA = ((float(studentGrades[1][0]) + float(studentGrades[1][1]) + float(studentGrades[1][2])) / (3.0));
+	cout << "#2\t\t" << avgGPA << endl;
+
+	// Third Student 
+	avgGPA = ((float(studentGrades[2][0]) + float(studentGrades[2][1]) + float(studentGrades[2][2])) / (3.0));
+	cout << "#1\t\t" << avgGPA << endl;
+
+	// Fourth Student 
+	avgGPA = ((float(studentGrades[3][0]) + float(studentGrades[3][1]) + float(studentGrades[3][2])) / (3.0));
+	cout << "#2\t\t" << avgGPA << endl;
+
+	// Fifth Student 
+	avgGPA = ((float(studentGrades[4][0]) + float(studentGrades[4][1]) + float(studentGrades[4][2])) / (3.0));
+	cout << "#2\t\t" << avgGPA << endl << endl;
+
+	cout << "\n\nAverage GPA by Subject";
+	cout << "\nEnglish" << setw(10) << "History" << setw(10) << "Math\n";
+	subjectGPA = ((float(studentGrades[0][0]) + float(studentGrades[1][0]) + float(studentGrades[2][0]) + float(studentGrades[3][0]) + float(studentGrades[4][0])) / (5.0));
+	cout << subjectGPA;
+	subjectGPA = ((float(studentGrades[0][1]) + float(studentGrades[1][1]) + float(studentGrades[2][1]) + float(studentGrades[3][1]) + float(studentGrades[4][1])) / (5.0));
+	cout << setw(11) << subjectGPA;
+	subjectGPA = ((float(studentGrades[1][2]) + float(studentGrades[0][2]) + float(studentGrades[2][2]) + float(studentGrades[3][2]) + float(studentGrades[4][2])) / (5.0));
+	cout << setw(11) << subjectGPA << "\n\n";
+
+
+	return 0;
+}
